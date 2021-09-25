@@ -18,10 +18,14 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: started
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 19.07
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -111,8 +115,8 @@ jobs:
 
     - name: Check space usage
       if: (!cancelled())
-      run: df -hT
-      
+      run: df -hT  
+          
     - name: 整理固件文件夹
       id: organizer
       run: |
